@@ -21,7 +21,7 @@ resource "ibm_is_instance" "iac_test_instance" {
   }
 
   vpc  = ibm_is_vpc.iac_test_vpc.id
-  zone = "${var.zone}"
+  zone = var.zone
   keys = [ibm_is_ssh_key.iac_test_key.id]
 
   user_data = <<-EOUD
