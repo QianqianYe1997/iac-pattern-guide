@@ -1,6 +1,6 @@
 provider "ibm" {
   generation = 2
-  region     = "${var.ibmcloud_region}"
+  region     = var.ibmcloud_region
 }
 
 resource "ibm_is_ssh_key" "iac_test_key" {
