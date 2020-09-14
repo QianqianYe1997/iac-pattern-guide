@@ -1,6 +1,6 @@
 provider "ibm" {
   generation = 2
-  region     = "us-south"
+  region     = "${var.ibmcloud_region}"
 }
 
 resource "ibm_is_ssh_key" "iac_test_key" {
@@ -12,6 +12,7 @@ resource "ibm_is_instance" "iac_test_instance" {
   name    = "${var.project_name}-${var.environment}-instance"
   image   = "r006-14140f94-fcc4-11e9-96e7-a72723715315"
   profile = "cx2-2x4"
+  resource_group = "${var.resource_group_id}"
 
   primary_network_interface {
     name            = "eth1"
@@ -20,7 +21,7 @@ resource "ibm_is_instance" "iac_test_instance" {
   }
 
   vpc  = ibm_is_vpc.iac_test_vpc.id
-  zone = "us-south-1"
+  zone = "${var.zone}"
   keys = [ibm_is_ssh_key.iac_test_key.id]
 
   user_data = <<-EOUD
