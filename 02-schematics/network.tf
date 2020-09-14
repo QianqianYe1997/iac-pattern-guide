@@ -14,7 +14,7 @@ resource "ibm_is_subnet" "iac_test_subnet" {
 resource "ibm_is_security_group" "iac_test_security_group" {
   name = "${var.project_name}-${var.environment}-sg-public"
   vpc  = ibm_is_vpc.iac_test_vpc.id
-  resource_group = "${var.resource_group_id}"
+  resource_group = var.resource_group_id
 }
 
 resource "ibm_is_security_group_rule" "iac_test_security_group_rule_all_outbound" {
@@ -43,5 +43,5 @@ resource "ibm_is_security_group_rule" "iac_test_security_group_rule_tcp_ssh" {
 resource "ibm_is_floating_ip" "iac_test_floating_ip" {
   name   = "${var.project_name}-${var.environment}-ip"
   target = ibm_is_instance.iac_test_instance.primary_network_interface.0.id
-  resource_group = "${var.resource_group_id}"
+  resource_group = var.resource_group_id
 }

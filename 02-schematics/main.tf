@@ -12,7 +12,7 @@ resource "ibm_is_instance" "iac_test_instance" {
   name    = "${var.project_name}-${var.environment}-instance"
   image   = "r006-14140f94-fcc4-11e9-96e7-a72723715315"
   profile = "cx2-2x4"
-  resource_group = "${var.resource_group_id}"
+  resource_group = var.resource_group_id
 
   primary_network_interface {
     name            = "eth1"
